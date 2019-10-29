@@ -1,11 +1,16 @@
 pipeline {
     agent any
-    tools {
-        nodejs 'NodeJS 13.0.1'
-    }
+    
     stages {
+        stage ('Say Hello To the World') {
+          steps {
+            checkout scm
+          }
+        }        
         stage('Build') {
             steps {
+                sh "apk add nodejs"
+                sh "echo $PATH"
                 sh 'npm install'
             }
         }
